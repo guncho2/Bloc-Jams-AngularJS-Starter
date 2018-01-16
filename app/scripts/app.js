@@ -23,6 +23,10 @@
           $stateProvider
          .state('landing', {
              url: '/',
+//registereing/designating a controller through UI-Router for the state
+// landing state
+              controller: 'LandingCtrl as landing',
+
              templateUrl: '/templates/landing.html'
 
            })
@@ -36,6 +40,7 @@
 // on $stateProvider. Add another state, named album:
          .state('collection', {
              url: '/collection',
+             controller: 'CollectionCtrl as collection',
              templateUrl: '/templates/collection.html'
 
           })
