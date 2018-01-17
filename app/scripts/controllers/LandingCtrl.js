@@ -2,13 +2,14 @@
 (function(){
   function LandingCtrl(){
     // to initialize a $scope object, a controller attach properties to it
-    //we add heroTile property to LandingCtrl using this. where $scope contain
+    //we add heroTitle property to LandingCtrl using this. where $scope contain
     //the model or data that the view will present, available on the template at
     // the point on the DOM where the the controller is registered. The LandingCtrl
     // is registered for the landing.html template
 
-    this.heroTile = "Turn the music Up!";
-
+    this.heroTitle = "Turn the music Up!";
+//heroTitle property to LandingCtrl using this. where $scope contain
+//the model or data
   }
 
   angular

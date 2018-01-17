@@ -1,5 +1,8 @@
 <section class="hero-content">
-  <!--we display the herotitle properties fromthe LandingCtrl.js constructor-$scope  -->
+  <!--we display the herotitle properties fromthe LandingCtrl.js {{}}constructor-$scope
+The {{ }} are a declarative way of specifying data binding locations in the HTML. Angular automatically
+ updates this text whenever the heroTitle property changes. The landing part of landing.heroTitle
+  comes from the controller as syntax used when the controller was assigned to the template. on APP.JS-->
   <h1 class="hero-title">{{ landing.heroTitle }}</h1>
 </section>
 

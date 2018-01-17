@@ -1,16 +1,29 @@
 <section class="album-covers container clearfix">
-    <div class="collection-album-container column fourth">
-        <img src="/assets/images/album_covers/01.png"/>
+  <!--we added the data from albumPicasso constructor to the colection.albums array
+  through the push method , now we update the cllection template and displaymultiple albums
+like for..in ngReapat iterate through different items from the array collection.albums
+collection came from the Instantiate controller: 'CollectionCtrl as collection', in the APP.JS-->
+    <div class="collection-album-container column fourth" ng-repeat="album in collection.albums">
+  <!--collection is the albums array to hold copies of albumPicasso. "album in collection.albums"
+allows us to get the data from a single collection  -->
+        <!-- Instead of: <img src="/assets/images/album_covers/01.png"/> -->
+        <img src="{{ album.albumArtUrl }}">
         <div class="collection-album-info caption">
             <p>
-                <a class="album-name" href="album.html">The Colors</a>
+                <!-- <a class="album-name" href="album.html">The Colors</a> -->
+                <a class="album-name" ui-sref="album">{{ album.title }}</a>
                 <br/>
-                <a href="album.html">Pablo Picasso</a>
+                <!-- <a href="album.html">Pablo Picasso</a> -->
+                <a ui-sref="album">{{ album.artist }}</a>
                 <br/>
-                X songs
+                <!-- X songs -->
+                {{ album.songs.length }} songs
                 <br/>
             </p>
         </div>
     </div>
 </section>
 <ng-include src="'/templates/player_bar.html'"></ng-include>
+<!-- With ngRepeat, the <div> with the collection-album-container class will repeat as many times as set by the loop.
+
+ -->
