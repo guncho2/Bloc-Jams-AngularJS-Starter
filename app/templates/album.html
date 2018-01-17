@@ -20,7 +20,7 @@
 
            <!-- <td class="song-item-number"> -->
            <!-- 5 -->
-             <td class="song-item-number">{{ collection.songs.$index }} songs
+             <td class="song-item-number">{{ album.songs.$index }} songs
 
    <span ng-show="!playing && !hovered">1</span>
    <a class="album-song-button" ng-show="!playing && hovered"><span class="ion-play"></span></a>
@@ -38,6 +38,9 @@
              <br/>
              <!-- 5 -->
              <a class="song-item-label"ui-sref="album">{{ album.label }}</a>
+             <br/>
+             <!-- 5 -->
+             <a class="song-item-art"ui-sref="album">{{ album.albumArtUrl }}</a>
              <br/>
              <!-- 5 -->
              <td class="song-item-duration">3:31</td>
