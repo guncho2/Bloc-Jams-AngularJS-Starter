@@ -11,6 +11,7 @@
      </section>
      <table class="album-view-song-list">
        <!-- we show the mouse over with variable hovered and mouseleave with hoevered false -->
+       <!-- 5 -->
          <tr class="album-view-song-item" ng-mouseover="hovered = true" ng-mouseleave="hovered = false" ng-repeat="album in album.albums track by $index">
            <!--ng-show the play pause or not depending the hide we put on .css
          and say that if not playing and not hovered over we show play and song number
@@ -19,7 +20,7 @@
 
            <!-- <td class="song-item-number"> -->
            <!-- 5 -->
-             {{ collection.songs.$index }} songs
+             <td class="song-item-number">{{ collection.songs.$index }} songs
 
    <span ng-show="!playing && !hovered">1</span>
    <a class="album-song-button" ng-show="!playing && hovered"><span class="ion-play"></span></a>
@@ -29,12 +30,16 @@
              <!-- 5 -->
              <a class="song-item-title"ui-sref="album">{{ album.title }}</a>
              <br/>
+             <!-- 5 -->
              <a class="song-item-artist"ui-sref="album">{{ album.artist }}</a>
              <br/>
+             <!-- 5 -->
              <a class="song-item-year"ui-sref="album">{{ album.year }}</a>
              <br/>
+             <!-- 5 -->
              <a class="song-item-label"ui-sref="album">{{ album.label }}</a>
              <br/>
+             <!-- 5 -->
              <td class="song-item-duration">3:31</td>
              <br/>
          </tr>
