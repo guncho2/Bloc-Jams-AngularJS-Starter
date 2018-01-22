@@ -21,10 +21,10 @@ part of the page -->
                 <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
             </a>
             <div class="links-container">
-                <a href="collection.html" class="navbar-link">Collection</a>
+                <a ui-sref="collection" class="navbar-link">Collection</a>
             </div>
         </nav>
-        <ui-vew></ui-view>
+        <ui-view></ui-view>
         {{ 2 + 2 }}
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -35,12 +35,12 @@ part of the page -->
 
         <script src="scripts/app.js"></script>
         <!-- link to the file where an album collection was created -->
-        <script src="/scripts/fixtures.js"></script>
+        <script src="/scripts/services/Fixtures.js"></script>
         <!--linking the LandingCtrl.js to the html  -->
         <script src="/scripts/controllers/LandingCtrl.js"></script>
         <script src="/scripts/controllers/CollectionCtrl.js"></script>
         <script src="/scripts/controllers/AlbumCtrl.js"></script>
-        
+
 
     </body>
 </html>

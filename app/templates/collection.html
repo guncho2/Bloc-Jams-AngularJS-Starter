@@ -3,7 +3,7 @@
   through the push method , now we update the cllection template and displaymultiple albums
 like for..in ngReapat iterate through different items from the array collection.albums
 collection came from the Instantiate controller: 'CollectionCtrl as collection', in the APP.JS-->
-    <div class="collection-album-container column fourth" ng-repeat="album in collection.albums">
+    <div class="collection-album-container column fourth" ng-repeat="album in collection.albums track by $index">
   <!--collection is the albums array to hold copies of albumPicasso. "album in collection.albums"
 allows us to get the data from a single collection  -->
         <!-- Instead of: <img src="/assets/images/album_covers/01.png"/> -->
