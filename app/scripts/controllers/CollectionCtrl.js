@@ -13,7 +13,7 @@ this.albums = Fixtures.getCollection(12);
 }
      angular
          .module('blocJams')
-         .controller('CollectionCtrl', CollectionCtrl);
+         .controller('CollectionCtrl', ['Fixtures', CollectionCtrl]);
  })();
 //We add an albums property and set its value to an empty array. Within the for loop,
 // we use angular.copy to make copies of albumPicasso and push them to the array.
