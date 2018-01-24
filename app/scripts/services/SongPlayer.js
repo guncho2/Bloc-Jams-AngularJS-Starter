@@ -1,6 +1,9 @@
 //like in fixtures, we create a variable with an empty object
 //the service returns this object and make it public within its
 //methods and properties
+//@function SongPlayer
+//@desc function THAT HOLD METHODS and properties for the song player
+// @param
 (function(){
   function SongPlayer() {
     var SongPlayer = {};
@@ -14,24 +17,61 @@
 //Set a new Buzz sound object.
 //Set the newly chosen song object as the currentSong.
 //Play the new Buzz sound object.
-    var currentSong = null;
-     var currentBuzzObject = null;
 
+//@desc currentSong variable audio file
+//@type var
+    var currentSong = null;
+    //@desc Buzz object audio file
+ //@type {Object}
+     var currentBuzzObject = null;
+     //@function setSong
+     //@desc Stops currently playing song and loads new audio file as currentBuzzObject
+     // @param {Object} song
     SongPlayer.play = function(song) {
       if (currentSong !== song) {
-            if (currentBuzzObject) {
-                currentBuzzObject.stop();
+
+
+          //  if (currentBuzzObject) {
+          //      currentBuzzObject.stop();
 //In our SongPlayer service, every time we play, pause,
 // or stop a song, we'll need to update this boolean
-                currentSong.playing = null;
-            }
+          //      currentSong.playing = null;
+        //    }
       //var currentBuzzObject = new buzz.sound(sound.audioUrl, {
-      currentBuzzObject = new buzz.sound(song.audioUrl, {
+    //  currentBuzzObject = new buzz.sound(song.audioUrl, {
+    //    formats: ['mp3'],
+    //    preload: true
+    //  });
+    //  currentSong = song;
+
+//@function playSong
+//@desc Play currently playing song and loads new audio file as currentBuzzObject
+// @param {Object} song
+
+
+
+//@function setSong
+//@desc stop currently playing song and loads new audio file as currentBuzzObject
+//if current song is == song playing and current song object is paused
+//the current playing object song will play
+// @param {Object} song
+    var setSong = function(song) {
+    if (currentBuzzObject) {
+        currentBuzzObject.stop();
+        currentSong.playing = null;
+    }
+
+    currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
         preload: true
-      });
-      currentSong = song;
+    });
 
+    currentSong = song;
+ };
+
+
+
+      setSong(song);
       currentBuzzObject.play();
       //In our SongPlayer service, every time we play, pause,
       // or stop a song, we'll need to update this boolean
@@ -41,6 +81,7 @@
       // as the  currentSong, then the assumption is that the song must be
       //paused. The conditional statement if (currentBuzzObject.isPaused())
       //is a check to make sure our assumption is correct
+
     } else if (currentSong === song) {
        if (currentBuzzObject.isPaused()) {
            currentBuzzObject.play();
@@ -56,6 +97,32 @@
 
     //Now that we can actually see the pause button, let's implement the method
     // to call when a user clicks on it  pause
+
+    //@function pause
+    //@desc Play currently playing song is paused so the current object song audio
+    //is paused and the playing song is false
+
+    // @param {Object} song
+
+    // Assignment
+
+     SongPlayer.playSong = function(song) {
+     if (currentBuzzObject){
+    currentBuzzObject.play();
+    song.playing = true;
+    };
+    currentBuzzObject = new buzz.sound(song.audioUrl, {
+       formats: ['mp3'],
+       preload: true
+    });
+
+    currentSong = song;
+    };
+
+
+    //Finish Assignment
+
+
     SongPlayer.pause = function(song) {
      currentBuzzObject.pause();
      song.playing = false;
