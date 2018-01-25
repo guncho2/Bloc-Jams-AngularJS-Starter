@@ -25,10 +25,11 @@
              <h2 class="artist-song-mobile"></h2>
              <h3 class="artist-name"></h3>
              <div class="seek-control">
-                 <div class="seek-bar">
-                     <div class="fill"></div>
-                     <div class="thumb"></div>
-                 </div>
+               <seek-bar></seek-bar>
+<!-- When Angular traverses the HTML, it replaces the <seek-bar> element with its
+   corresponding directive definition, which includes both the HTML template
+  and any functionality associated with it -->
+  
                  <div class="current-time"></div>
                  <div class="total-time"></div>
              </div>
