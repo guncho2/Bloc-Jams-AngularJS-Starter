@@ -190,6 +190,24 @@ if (currentSongIndex < 0) {
    }
  };
 
+//ASSIGNMENT NEXT
+ SongPlayer.next = function() {
+     var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+     currentSongIndex++;
+
+ if (currentSongIndex > getCollection.length) {
+       currentBuzzObject.stop();
+       SongPlayer.currentSong.playing = null;
+
+  
+ } else {
+       var song = currentAlbum.songs[currentSongIndex];
+       setSong(song);
+       playSong(song);
+   }
+ };
+
+ //FINISH ASSIGNMENT NEXT
 
  //pause method requires less logic because we don't need to check for various
  //conditions – a song must already be playing before the user can trigger it.
