@@ -1,4 +1,7 @@
 <div class="seek-bar">
-    <div class="fill"></div>
+    <!-- <div class="fill"></div> -->
+    <div class="fill" ng-style="fillStyle()"></div>
+    <!--from scope.fillStyle = function() {
+                 return {width: percentString()}; on he seekBar.js  -->
     <div class="thumb"></div>
 </div>
