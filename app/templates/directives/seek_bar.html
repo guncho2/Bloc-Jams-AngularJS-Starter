@@ -1,4 +1,6 @@
-<div class="seek-bar">
+<div class="seek-bar" ng-click="onClickSeekBar($event)">
+  <!-- When a user clicks on a point on the seek-bar class element,
+  the function will execute. -->
     <!-- <div class="fill"></div> -->
     <div class="fill" ng-style="fillStyle()"></div>
     <!--from scope.fillStyle = function() {

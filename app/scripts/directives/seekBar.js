@@ -1,5 +1,15 @@
 (function(){
   function seekBar() {
+//first function will be called when a user clicks on the seek bar
+  var calculatePercent = function(seekBar, event) {
+      var offsetX = event.pageX - seekBar.offset().left;
+      var seekBarWidth = seekBar.width();
+      var offsetXPercent = offsetX / seekBarWidth;
+      offsetXPercent = Math.max(0, offsetXPercent);
+      offsetXPercent = Math.min(1, offsetXPercent);
+      return offsetXPercent;
+  };
+
     return {
       templateUrl: '/templates/directives/seek_bar.html',
       replace: true,
@@ -13,8 +23,10 @@
 // into a percent string.
 //Update the DOM element with an appropriate value so that it is visible to
 //the user.
-scope.value = 0;
+          scope.value = 0;
           scope.max = 100;
+          var seekBar = $(element);
+
 
           var percentString = function () {
               var value = scope.value;
@@ -26,6 +38,17 @@ scope.value = 0;
           scope.fillStyle = function() {
               return {width: percentString()};
           };
+          scope.onClickSeekBar = function(event) {
+             var percent = calculatePercent(seekBar, event);
+             scope.value = percent * scope.max;
+         };
+         //calculatePercent()	Calculates the horizontal percent along the
+  //seek bar where the event (passed in from the view as  $event)
+  //occurred.
+//seekBar	Holds the element that matches the directive (<seek-bar>) as a jQuery
+// object so we can call jQuery methods on it.
+//scope.onClickSeekBar()	Updates the seek bar value based on the seek bar's
+//width and the location of the user's click on the seek bar.
 
          }
 
