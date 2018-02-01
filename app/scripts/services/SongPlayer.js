@@ -139,17 +139,12 @@ var getSongIndex = function(song) {
 
     // Assignment
 
-     SongPlayer.playSong = function(song) {
+     var playSong = function(song) {
      if (currentBuzzObject){
     currentBuzzObject.play();
     song.playing = true;
     };
-    currentBuzzObject = new buzz.sound(song.audioUrl, {
-       formats: ['mp3'],
-       preload: true
-    });
 
-    SongPlayer.currentSong = song;
     };
 
 
@@ -195,11 +190,11 @@ if (currentSongIndex < 0) {
      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
      currentSongIndex++;
 
- if (currentSongIndex > getCollection.length) {
+ if (currentSongIndex > currentAlbum.songs.length-1) {
        currentBuzzObject.stop();
        SongPlayer.currentSong.playing = null;
 
-  
+
  } else {
        var song = currentAlbum.songs[currentSongIndex];
        setSong(song);
