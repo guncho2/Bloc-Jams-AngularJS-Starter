@@ -5,9 +5,9 @@
     <div class="fill" ng-style="fillStyle()"></div>
     <!--from scope.fillStyle = function() {
                  return {width: percentString()}; on he seekBar.js  -->
-                 
+  
     <!-- <div class="thumb"></div> -->
-    <div class="thumb" ng-mousedown="trackThumb()"></div>
+    <div class="thumb" ng-mousedown="trackThumb()" ng-style="thumbStyle()"</div>
 
     <!--The scope.trackThumb function should execute when a user interacts with
      the  thumb class element in the view. More specifically, when the event

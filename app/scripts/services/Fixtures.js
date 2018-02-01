@@ -37,20 +37,19 @@
     Fixtures.getAlbum = function() {
         return albumPicasso;
     };
-    return Fixtures;
 
-    Fixtures.getCollection = function() {
-      this.numberOfAlbums = [];
-           for (var i=0; i < 12; i++) {
-               this.numberOfAlbums.push(angular.copy(albumPicasso));
-             }
-        return numberOfAlbums;
-    };
 
+    Fixtures.getCollection = function(nalbums) {
+      let numberOfAlbums = [];
+      for (var i=0; i < nalbums; i++) {
+          numberOfAlbums.push(angular.copy(albumPicasso));
+      }
+      return numberOfAlbums;
+     };
+return Fixtures;
   }
 
-
-  angular
+angular
     .module('blocJams')
     .factory('Fixtures', Fixtures); //use .factory for services
 
