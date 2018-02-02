@@ -82,6 +82,23 @@ function seekBar($document) {
           scope.max = 100;
           //Have a maximum value.
           var seekBar = $(element);
+          // To monitor the value changes of these attributes in a manner specific
+          //to this directive, we have to "observe" them. We can notify the directive
+          // of all changes to attribute values by using the $observe method on the
+          // Angular attributes object:
+          attributes.$observe('value', function(newValue) {
+     scope.value = newValue;
+ });
+
+ attributes.$observe('max', function(newValue) {
+     scope.max = newValue;
+ });
+//This code observes the values of the attributes we declare in the HTML by
+//specifying the attribute name in the first argument. When the observed
+//attribute is set or changed, we execute a callback (the second argument)
+//that sets a new scope value (newValue) for the scope.value and scope.max
+//attributes. We use the directive's scope to determine the location of the
+//seek bar thumb, and correspondingly, the playback position of the song
 
           //seekBar's HTML template can access the attributes and methods of the
           //directive's  scope object – in this case: scope.value, scope.max, and
@@ -99,7 +116,7 @@ function seekBar($document) {
           //scope.fillStyle()	Returns the width of the seek bar fill element based on
           //the calculated percent
           scope.thumbStyle = function() {
-            return { left: percentString()};
+            return {left: percentString()};
           }
 
           scope.fillStyle = function() {

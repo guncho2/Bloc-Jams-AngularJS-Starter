@@ -38,6 +38,13 @@ var getSongIndex = function(song) {
 //@type var
     //var SongPlayer.currentSong = null;
     SongPlayer.currentSong = null;
+
+ // @desc Current playback time (in seconds) of currently playing song
+ //  @type {Number}
+ // If the length of a song is the max value of the seek bar, then the current
+ //playback time of the song is the value of the seek bar, which determines the
+ // position of the seek bar thumb
+ SongPlayer.currentTime = null;
     //@desc Buzz object audio file
  //@type {Object}
      var currentBuzzObject = null;
@@ -93,7 +100,11 @@ var getSongIndex = function(song) {
         currentBuzzObject.stop();
         SongPlayer.currentSong.playing = null;
     }
-
+    // the play method take the argument song which will get from the Albumview
+    //when the user clicks the play button, the ng-Repeat directive used on the Albumview
+    //template will dictate which song to pass into the function. The play method
+    // crates a new Buzz object using song's audioUrl property and then call
+    //Buzz owns play method on the object
     currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
         preload: true
@@ -121,21 +132,10 @@ var getSongIndex = function(song) {
            song.playing = true;
        }
    }
-// the play method take the argument song which will get from the Albumview
-//when the user clicks the play button, the ng-Repeat directive used on the Albumview
-//template will dictate which song to pass into the function. The play method
-// crates a new Buzz object using song's audioUrl property and then call
-//Buzz owns play method on the object
+
     };
 
-    //Now that we can actually see the pause button, let's implement the method
-    // to call when a user clicks on it  pause
 
-    //@function pause
-    //@desc Play currently playing song is paused so the current object song audio
-    //is paused and the playing song is false
-
-    // @param {Object} song
 
     // Assignment
 
@@ -149,7 +149,14 @@ var getSongIndex = function(song) {
 
 
     //Finish Assignment
+    //Now that we can actually see the pause button, let's implement the method
+    // to call when a user clicks on it  pause
 
+    //@function pause
+    //@desc Play currently playing song is paused so the current object song audio
+    //is paused and the playing song is false
+
+    // @param {Object} song
 
     SongPlayer.pause = function(song) {
       //We use || to tell the function: assign (1) the value of
