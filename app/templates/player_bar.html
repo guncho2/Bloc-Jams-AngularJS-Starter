@@ -33,8 +33,28 @@
    currently playing song.Recall from the previous checkpoint that we've already
     declared scope.value and  scope.max attributes. We'll add these attributes
      to the directive in the view  -->
-                 <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}"></seek-bar>
- ...
+
+<!-- <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}"></seek-bar> -->
+
+ <!--we want to specify an external function that the directive will call when the
+ seek bar position changes. In doing so, the directive can remain a general
+ visualization that supports a broad set of use cases.
+Add an attribute named on-change that takes an expression to execute when we change
+the value of the seek bar. In this case, we'll pass it a callback that sets the time
+ of the song to correspond to the value of the seek bar
+
+ time of the song code:
+ var seek = function(time) {
+    if (currentSoundFile) {
+        currentSoundFile.setTime(time);
+    }
+ };-->
+ <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
+<!--Note that value passed into the onChange call is not inherently the same as
+scope.value. It is a variable that shares the name. We can (and will, shortly) pass
+in scope.value as the value that is the argument for this function, but the two are
+ not the same by definition
+-->
                  <div class="current-time"></div>
                  <div class="total-time"></div>
              </div>

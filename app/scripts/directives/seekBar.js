@@ -21,7 +21,30 @@ function seekBar($document) {
       //Declaring an empty scope property ensures that a new scope will exist
       //solely for the directive (referred to as isolate-scope). An isolate-scope
       //allows us to bind functions from the directive's view to its scope.
-         scope: { },
+
+         //scope: { },
+
+//We want Angular to treat the on-change attribute (on-change="playerBar.songPlayer.setCurrentTime(value)"
+//differently than the value or max attributes. We don't want on-change to act like
+// a number, string, or static object.Instead, we want the directive to evaluate the
+//on-change expression and execute it.To make sure the directive evaluates the
+//attribute, we'll attach it to the directive's scope, rather than the attributes
+//object. Scoping the attribute allows us the flexibilityto specify how we want to
+// handle the value passed to the on-change attribute
+
+scope: {
+         onChange: '&'
+     },
+//The & in the isolate scope object is a type of directive scope binding.
+//The three types of directive scope bindings – @, =, and & – allow us to treat
+//the value of the given attribute differently. The & binding type provides a way
+//to execute an expression in the context of the parent scope.
+
+
+
+
+
+
          //The link function is automatically generated and scoped to the element
          //defining the directive. Think of it as a function that executes when the
          //directive is instantiated in the view. This is where all logic related to
@@ -132,6 +155,14 @@ function seekBar($document) {
 //seekBar	Holds the element that matches the directive (<seek-bar>) as a jQuery
 // object so we can call jQuery methods on it.
              scope.value = percent * scope.max;
+//We update the value of scope.value and yet we don't see that update reflected on
+//the attribute in the view.We need to pass the updated value to the onChange
+//attribute. To do so, we'll write a function to call in the onClickSeekBar and
+//trackThumb methods that will send the updated scope.value to the function
+//evaluated by onChange
+             notifyOnChange(scope.value);
+//We name the function notifyOnChange because its purpose is to notify
+ //onChange that scope.value has changed
          };
 
 scope.trackThumb = function() {
@@ -142,6 +173,9 @@ scope.trackThumb = function() {
          var percent = calculatePercent(seekBar, event);
          scope.$apply(function() {
              scope.value = percent * scope.max;
+             notifyOnChange(scope.value);
+  //We name the function notifyOnChange because its purpose is to notify
+//onChange that scope.value has changed
          });
      });
 
@@ -151,6 +185,10 @@ scope.trackThumb = function() {
      });
  };
 
+ //We name the function notifyOnChange because its purpose is to notify onChange
+ // that scope.value has changed
+
+
 //In this previous function is when the user drags the seek bar thumb.ng-mousedown
 //is setting to trigger the scope.trackThumb function.This method will bind an
 //event handler that tracks the mouse movements, and updates the the seek bar value.
@@ -158,6 +196,21 @@ scope.trackThumb = function() {
 //the when the user is relaese the mouse the the seekBar dont respond anymore
 // to the mouse moevements.
 
+var notifyOnChange = function(newValue) {
+     if (typeof scope.onChange === 'function') {
+         scope.onChange({value: newValue});
+     }
+ };
+ //We test to make sure that scope.onChange is a function. If a future developer fails
+ // to pass a function to the on-change attribute in the HTML, the next line will not be reached,
+ //and no error will be thrown.
+//We pass a full function call to the on-change attribute in the HTML –  scope.onChange()
+// calls the function in the attribute.
+//The function we pass in the HTML has an argument, value, which isn't defined in the
+// view (remember that it's not the same as scope.value). Using built-in Angular
+//functionality, we specify the value of this argument using hash syntax. Effectively,
+// we're telling Angular to insert the local newValue variable as the  value argument
+// we pass into the SongPlayer.setCurrentTime() function called in the view.
          }
 
     };

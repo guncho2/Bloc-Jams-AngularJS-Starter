@@ -6,7 +6,7 @@
 // @param
 (function(){
   //function SongPlayer() {
-  function SongPlayer(Fixtures) {
+  function SongPlayer($rootScope, Fixtures) {
 
   //To move between songs, we need to know the index of the
   //song object within the  songs array. To access the songs
@@ -109,6 +109,22 @@ var getSongIndex = function(song) {
         formats: ['mp3'],
         preload: true
     });
+//To update the song's playback progress from anywhere, we'll add a  $rootScope.$apply event in the
+// SongPlayer service. This creates a custom event that other parts of the Angular application can
+// "listen" to. We've dealt with common JavaScript events before, like click, mouseover, and
+//mousedown. This will be our first custom event. Add the $apply to the SongPlayer.setSong method
+// so that it starts "applying" the time update once we know which song to play
+
+currentBuzzObject.bind('timeupdate', function() {
+         $rootScope.$apply(function() {
+             SongPlayer.currentTime = currentBuzzObject.getTime();
+         });
+     });
+//The bind() method adds an event listener to the Buzz sound object – in this case, we listen for a
+// timeupdate event. When the song playback time updates, we execute a callback function. This
+// function sets the value of SongPlayer.currentTime to the current playback time of the current
+//Buzz object using another one of the Buzz library methods: getTime(), which gets the current
+//playback position in seconds. Using  $apply, we apply the time update change to the $rootScope.
 
     SongPlayer.currentSong = song;
  };
@@ -146,6 +162,8 @@ var getSongIndex = function(song) {
     };
 
     };
+
+
 
 
     //Finish Assignment
@@ -209,7 +227,25 @@ if (currentSongIndex < 0) {
    }
  };
 
+
  //FINISH ASSIGNMENT NEXT
+
+//The SongPlayer service doesn't yet have a setCurrentTime method, so we'll add
+// it to the service now.This is for the method we put on player.html
+//on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
+
+
+ //@function setCurrentTime
+ //@desc Set current time (in seconds) of currently playing song
+ //@param {Number} time
+
+ SongPlayer.setCurrentTime = function(time) {
+     if (currentBuzzObject) {
+         currentBuzzObject.setTime(time);
+     }
+ };
+ //The setCurrentTime method checks if there is a current Buzz object, and, if
+ //so, uses the Buzz library's setTime method to set the playback position in seconds.
 
  //pause method requires less logic because we don't need to check for various
  //conditions – a song must already be playing before the user can trigger it.
@@ -218,6 +254,6 @@ if (currentSongIndex < 0) {
 
   angular
     .module('blocJams')
-    .factory('SongPlayer', ['Fixtures', SongPlayer]);
+    .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 
 })();
