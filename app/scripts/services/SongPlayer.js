@@ -47,6 +47,8 @@ var getSongIndex = function(song) {
  SongPlayer.currentTime = null;
     //@desc Buzz object audio file
  //@type {Object}
+ SongPlayer.currentVolume = null;
+
      var currentBuzzObject = null;
      //@function setSong
      //@desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -126,6 +128,11 @@ currentBuzzObject.bind('timeupdate', function() {
 //Buzz object using another one of the Buzz library methods: getTime(), which gets the current
 //playback position in seconds. Using  $apply, we apply the time update change to the $rootScope.
 
+currentBuzzObject.bind('volumechange', function() {
+         $rootScope.$apply(function() {
+             SongPlayer.currentVolume = currentBuzzObject.getVolume();
+         });
+     });
     SongPlayer.currentSong = song;
  };
 
@@ -244,9 +251,16 @@ if (currentSongIndex < 0) {
          currentBuzzObject.setTime(time);
      }
  };
+
+
  //The setCurrentTime method checks if there is a current Buzz object, and, if
  //so, uses the Buzz library's setTime method to set the playback position in seconds.
 
+ SongPlayer.setCurrentVolume = function(volume) {
+      if (currentBuzzObject) {
+          currentBuzzObject.setVolume(volume);
+      }
+  };
  //pause method requires less logic because we don't need to check for various
  //conditions – a song must already be playing before the user can trigger it.
     return SongPlayer;
