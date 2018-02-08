@@ -4,11 +4,11 @@
              <img src="/assets/images/album_covers/01.png" class="album-cover-art">
          </div>
          <div class="album-view-details column half">
-             <h2 class="album-view-title">{{album.album.title}}</h2>
-             <h3 class="album-view-artist">{{album.album.artist}}</h3>
-             <h5 class="album-view-release-info">{{album.album.year}}</h5>
-             <h5 class="song-item-art">{{ album.album.albumArtUrl }}</h5>
-             <h5 class="song-item-label">{{ album.album.label }}</h5>
+             <h2 class="album-view-title">{{album.albumData.title}}</h2>
+             <h3 class="album-view-artist">{{album.albumData.artist}}</h3>
+             <h5 class="album-view-release-info">{{album.albumData.year}}</h5>
+             <h5 class="song-item-art">{{ album.albumData.albumArtUrl }}</h5>
+             <h5 class="song-item-label">{{ album.albumData.label }}</h5>
          </div>
      </section>
      <table class="album-view-song-list">
@@ -17,7 +17,7 @@
        <!--  play method (from SongPlayer.js)takes an argument, song, which we'll get from the Album view
        when a user clicks the play button; the ngRepeat directive used in the Album view template will
         dictate which song to pass into the function -->
-         <tr class="album-view-song-item" ng-mouseover="hovered = true" ng-mouseleave="hovered = false" ng-repeat="song in album.album.songs track by $index">
+         <tr class="album-view-song-item" ng-mouseover="hovered = true" ng-mouseleave="hovered = false" ng-repeat="song in album.albumData.songs track by $index">
            <!--ng-show the play pause or not depending the hide we put on .css
          and say that if not playing and not hovered over we show play and song number
           and not playing and hovered also we show play "ion-play" and if "playing"
