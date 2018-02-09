@@ -25,10 +25,7 @@
              <h2 class="artist-song-mobile"></h2>
              <h3 class="artist-name"></h3>
              <div class="seek-control">
-                 <div class="seek-bar">
-                     <div class="fill"></div>
-                     <div class="thumb"></div>
-                 </div>
+
   <!--modify the seekBar directive so we can change the playback position of the
    currently playing song.Recall from the previous checkpoint that we've already
     declared scope.value and  scope.max attributes. We'll add these attributes
@@ -64,7 +61,7 @@ the value of the seek bar. In this case, we'll pass it a callback that sets the 
          </div>
          <div class="control-group volume">
              <span class="icon ion-volume-high"></span>
-             <div class="seek-bar">
+
  <!-- The code looks good! One thing I noticed is this line in player_bar.html:
 max="{{ playerBar.songPlayer.currentSong.volume(100) }}"
 That code assumes there is a volume function on the currentSong object, which we don't
@@ -72,10 +69,6 @@ have. In this case, since the max value will never change you can just set it di
 max="100"If we expected to change that value for some reason programmatically we could
  add a property to SongPlayer, like SongPlayer.maxVolume = 100; and then add a
  function to modify that, but I don't see a reason for that. -->
-               <seek-bar value="{{ playerBar.songPlayer.currentVolume }}" max="100" on-change="playerBar.songPlayer.setCurrentVolume(value)"></seek-bar
-                 <div class="fill"></div>
-                 <div class="thumb"></div>
-             </div>
-         </div>
-     </div>
+               <seek-bar value="{{ playerBar.songPlayer.currentVolume }}" max="100" on-change="playerBar.songPlayer.setCurrentVolume(value)"></seek-bar>
+          </div>
  </section>
