@@ -48,7 +48,7 @@
       song = song || SongPlayer.currentSong;
   if (SongPlayer.currentSong !== song) {
           setSong(song);
-          play(song);
+          playSong(song);
       } else if (SongPlayer.currentSong === song) {
         if (currentBuzzObject.isPaused()) {
             playSong(song)

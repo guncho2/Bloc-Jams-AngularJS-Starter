@@ -10,7 +10,7 @@
 //Instead of using jQuery to append images, bind the data from the albumPicasso object to the
 //Collection template:
 this.albums = [];
-     for (var i=0; i < 12; i++) {
+
          //this.albums.push(angular.copy(albumPicasso));
          this.albumData = Fixtures.getAlbum();
          //SongPlayer as a dependency. We will play music from the
@@ -18,7 +18,7 @@ this.albums = [];
          //the songPlayer property hold the service and make the service
          //accesible through the Albumview
          this.songPlayer = SongPlayer;
-     }
+
         this.album =  this.albums[0]
 
 }
