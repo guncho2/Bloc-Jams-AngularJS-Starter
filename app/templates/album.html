@@ -45,8 +45,8 @@ album	Refers to the controller. We use "controller as" syntax:  AlbumCtrl as alb
 
 
              <!-- 5 -->
-             <td class="song-item-duration">3:31</td>
-             <br/>
+             <td class="song-item-duration">{{album.albumData.duration | timecode }}</td>
+
          </tr>
      </table>
  </main>
