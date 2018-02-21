@@ -1,4 +1,4 @@
-<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
+<<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
      <div class="container">
          <div class="control-group main-controls">
              <a class="previous" ng-click="playerBar.songPlayer.previous()">
@@ -39,7 +39,6 @@
 Add an attribute named on-change that takes an expression to execute when we change
 the value of the seek bar. In this case, we'll pass it a callback that sets the time
  of the song to correspond to the value of the seek bar
-
  time of the song code:
  var seek = function(time) {
     if (currentSoundFile) {
@@ -60,7 +59,7 @@ the value of the seek bar. In this case, we'll pass it a callback that sets the 
              </div>
          </div>
          <div class="control-group volume">
-             <span class="icon ion-volume-high"></span>
+             <span class="icon ion-volume-high" ng-show="hovered" ng-hide="hovered" ng-click="playerBar.songPlayer.mute()"></span>
 
  <!-- The code looks good! One thing I noticed is this line in player_bar.html:
 max="{{ playerBar.songPlayer.currentSong.volume(100) }}"

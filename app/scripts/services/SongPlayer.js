@@ -128,7 +128,13 @@
 
     return SongPlayer;
   }
-
+  SongPlayer.mute = function(volume) {
+    if (SongPlayer.currentVolume > 0) {
+    SongPlayer.setCurrentVolume= 0;
+    } else {
+        SongPlayer.setCurrentVolume = currentBuzzObject.getVolume();
+      }
+    };
   angular
   .module('blocJams')
   .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
