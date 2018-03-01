@@ -41,10 +41,6 @@ scope: {
 //to execute an expression in the context of the parent scope.
 
 
-
-
-
-
          //The link function is automatically generated and scoped to the element
          //defining the directive. Think of it as a function that executes when the
          //directive is instantiated in the view. This is where all logic related to

@@ -1,4 +1,4 @@
-<<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
+<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
      <div class="container">
          <div class="control-group main-controls">
              <a class="previous" ng-click="playerBar.songPlayer.previous()">
@@ -59,7 +59,7 @@ the value of the seek bar. In this case, we'll pass it a callback that sets the 
              </div>
          </div>
          <div class="control-group volume">
-             <span class="icon ion-volume-high" ng-show="hovered" ng-hide="hovered" ng-click="playerBar.songPlayer.mute()"></span>
+             <button class="icon ion-volume-high" ng-click="playerBar.songPlayer.mute()">mute</button>
 
  <!-- The code looks good! One thing I noticed is this line in player_bar.html:
 max="{{ playerBar.songPlayer.currentSong.volume(100) }}"

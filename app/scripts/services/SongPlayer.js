@@ -125,16 +125,17 @@
         currentBuzzObject.setVolume(volume);
       }
     };
+    SongPlayer.mute = function() {
 
+      if (SongPlayer.currentVolume > 0) {
+      SongPlayer.setCurrentVolume(0);
+      } else {
+          SongPlayer.setCurrentVolume(80);
+        }
+      };
     return SongPlayer;
   }
-  SongPlayer.mute = function(volume) {
-    if (SongPlayer.currentVolume > 0) {
-    SongPlayer.setCurrentVolume= 0;
-    } else {
-        SongPlayer.setCurrentVolume = currentBuzzObject.getVolume();
-      }
-    };
+
   angular
   .module('blocJams')
   .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
